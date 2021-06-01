@@ -42,14 +42,15 @@ export async function buildDependencyGraph(packageName: string, version: string)
 
       // Determine the version to use based on versions available and depenency version string
       const dependencyVersion = maxSatisfying(Object.keys(depedencyMetadata.versions), dependencies[dependencyName]).toString();
+      const packageVersionIdentifier = packageIdentifier(dependencyName, dependencyVersion);
 
       // Cache version specific package metadata for future use
-      versionedPackageMetaCache[packageIdentifier(dependencyName, dependencyVersion)] =
-        versionedPackageMetaCache[packageIdentifier(dependencyName, dependencyVersion)] ?? depedencyMetadata.versions[dependencyVersion];
+      versionedPackageMetaCache[packageVersionIdentifier] =
+        versionedPackageMetaCache[packageVersionIdentifier] ?? depedencyMetadata.versions[dependencyVersion];
 
       // If the dependency has not been process add it to the queue
-      if (!visited[packageIdentifier(dependencyName, dependencyVersion)]) {
-        visited[packageIdentifier(dependencyName, dependencyVersion)] = true;
+      if (!visited[packageVersionIdentifier]) {
+        visited[packageVersionIdentifier] = true;
         packageProcessingQueue.push({ packageName: dependencyName, version: dependencyVersion, parent: newPackage });
       }
     }
