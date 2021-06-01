@@ -70,3 +70,26 @@ export const withSharedDependencyPackages = [
     },
   },
 ];
+
+export const nonExistentPackages = [
+  {
+    name: 'this-does-not-exist',
+    version: '1.0.0',
+  },
+  {
+    name: 'this-too-does-not-exist',
+    version: '2.0.0',
+  },
+];
+
+export const nonExistentVersionPackages = [
+  {
+    name: 'jws',
+    version: '5.0.0',
+    result: {},
+  },
+  {
+    name: 'jws',
+    version: '6.0.0',
+  },
+];

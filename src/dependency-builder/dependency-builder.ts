@@ -14,6 +14,11 @@ export async function buildDependencyGraph(packageName: string, version: string)
   visited[packageIdentifier(packageName, version)] = true;
 
   const versionedPackageMetadataResponse = await npmClient.getPackageVersionMetaData({ packageName, version });
+
+  if (!versionedPackageMetadataResponse) {
+    return null;
+  }
+
   versionedPackageMetaCache[packageIdentifier(packageName, version)] = versionedPackageMetadataResponse.data;
 
   while (packageProcessingQueue.length > 0) {

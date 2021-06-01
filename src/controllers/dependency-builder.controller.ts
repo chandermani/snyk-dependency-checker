@@ -9,6 +9,7 @@ class DependencyBuilderController {
 
       if (!dependencyGraph) {
         res.status(404).json({ error: `Package: ${name}, version: ${version} not found!` });
+        return;
       }
       res.status(200).json({ data: dependencyGraph });
     } catch (error) {

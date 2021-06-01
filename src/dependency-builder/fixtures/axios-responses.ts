@@ -3927,3 +3927,10 @@ export const axiosResponses = {
     _attachments: {},
   },
 };
+
+export const axiosNotFoundResponses = {
+  'https://registry.npmjs.org/this-does-not-exist/1.0.0': {},
+  'https://registry.npmjs.org/this-too-does-not-exist/1.0.0': {},
+  'https://registry.npmjs.org/jws/5.0.0': {},
+  'https://registry.npmjs.org/jws/6.0.0': {},
+};

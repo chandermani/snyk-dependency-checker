@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "axios-cache-adapter": "^2.7.3",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
