@@ -41,4 +41,15 @@ describe('Testing dependency builder', () => {
       });
     });
   });
+
+  describe('Packages with nested and shared dependencies', () => {
+    dependencyBuilderFitures.withSharedDependencyPackages.forEach(p => {
+      it(`should return correct package graph for package [${p.name}] version [${p.version}]`, async () => {
+        const route = new DependencyBuilderRoute();
+        const app = new App([route]);
+        const response = await request(app.getServer()).get(route.pathInstance(p.name, p.version));
+        expect(response.body.data).toStrictEqual(p.result);
+      });
+    });
+  });
 });
