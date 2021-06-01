@@ -20,6 +20,7 @@ class App {
 
   constructor(routes: Routes[]) {
     this.app = express();
+    this.app.set('json spaces', 2); // Remove this to disable formatting
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
 
