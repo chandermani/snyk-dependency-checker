@@ -1,7 +1,7 @@
 import request from 'supertest';
 import App from '@/app';
 import DependencyBuilderRoute from '@/routes/dependency-builder.route';
-import * as dependencyBuilderFitures from './fixtures/dependency-builder';
+import * as dependencyBuilderFixtures from './fixtures/dependency-builder';
 import { axiosNotFoundResponses, axiosResponses } from './fixtures/axios-responses';
 
 import mockedAxios from 'axios';
@@ -27,8 +27,8 @@ afterAll(async () => {
 
 describe('Testing dependency builder', () => {
   describe('Packages with no dependencies', () => {
-    dependencyBuilderFitures.noDependencyPackages.forEach(p => {
-      it(`should return empty package depenendencies for package [${p.name}] version [${p.version}]`, async () => {
+    dependencyBuilderFixtures.noDependencyPackages.forEach(p => {
+      it(`should return empty package dependencies for package [${p.name}] version [${p.version}]`, async () => {
         const route = new DependencyBuilderRoute();
         const app = new App([route]);
         const response = await request(app.getServer()).get(route.pathInstance(p.name, p.version));
@@ -38,7 +38,7 @@ describe('Testing dependency builder', () => {
   });
 
   describe('Packages with nested dependencies', () => {
-    dependencyBuilderFitures.withDependencyPackages.forEach(p => {
+    dependencyBuilderFixtures.withDependencyPackages.forEach(p => {
       it(`should return correct package graph for package [${p.name}] version [${p.version}]`, async () => {
         const route = new DependencyBuilderRoute();
         const app = new App([route]);
@@ -49,7 +49,7 @@ describe('Testing dependency builder', () => {
   });
 
   describe('Packages with nested and shared dependencies', () => {
-    dependencyBuilderFitures.withSharedDependencyPackages.forEach(p => {
+    dependencyBuilderFixtures.withSharedDependencyPackages.forEach(p => {
       it(`should return correct package graph for package [${p.name}] version [${p.version}]`, async () => {
         const route = new DependencyBuilderRoute();
         const app = new App([route]);
@@ -60,7 +60,7 @@ describe('Testing dependency builder', () => {
   });
 
   describe('Package not found', () => {
-    dependencyBuilderFitures.nonExistentPackages.forEach(p => {
+    dependencyBuilderFixtures.nonExistentPackages.forEach(p => {
       it(`should return 404 for package [${p.name}] version [${p.version}]`, async () => {
         const route = new DependencyBuilderRoute();
         const app = new App([route]);
@@ -71,7 +71,7 @@ describe('Testing dependency builder', () => {
   });
 
   describe('Package version not found', () => {
-    dependencyBuilderFitures.nonExistentVersionPackages.forEach(p => {
+    dependencyBuilderFixtures.nonExistentVersionPackages.forEach(p => {
       it(`should return 404 for package [${p.name}] version [${p.version}]`, async () => {
         const route = new DependencyBuilderRoute();
         const app = new App([route]);

@@ -5,4 +5,6 @@ const cache = setupCache({
   maxAge: 60 * 60 * 1000, // 1 hour
 });
 
-export const axiosClient = axios.create();
+export const axiosClient = axios.create({
+  adapter: cache.adapter,
+});

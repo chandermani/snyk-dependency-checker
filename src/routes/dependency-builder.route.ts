@@ -3,10 +3,10 @@ import DependencyBuilderController from '@controllers/dependency-builder.control
 import Route from '@interfaces/routes.interface';
 
 class DependencyBuilderRoute implements Route {
-  public path = '/package/:name/:version/dependencies';
+  public path = '/packages/:name/:version/dependencies';
   public router = Router();
   public dependencyBuilderController = new DependencyBuilderController();
-  public pathInstance = (packageName, version) => `/package/${packageName}/${version}/dependencies`;
+  public pathInstance = (packageName, version) => `/packages/${packageName}/${version}/dependencies`;
 
   constructor() {
     this.initializeRoutes();

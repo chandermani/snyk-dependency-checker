@@ -40,18 +40,18 @@ export async function buildDependencyGraph(packageName: string, version: string)
 
     for (const dependencyName in dependencies ?? {}) {
       // get dependency package metadata containing all versions detail
-      const depedencyMetadata = await npmClient.getPackageMetadata(dependencyName);
-      if (!depedencyMetadata) {
+      const dependencyMetadata = await npmClient.getPackageMetadata(dependencyName);
+      if (!dependencyMetadata) {
         continue;
       }
 
-      // Determine the version to use based on versions available and depenency version string
-      const dependencyVersion = maxSatisfying(Object.keys(depedencyMetadata.versions), dependencies[dependencyName]).toString();
+      // Determine the version to use based on versions available and dependency version string
+      const dependencyVersion = maxSatisfying(Object.keys(dependencyMetadata.versions), dependencies[dependencyName]).toString();
       const packageVersionIdentifier = packageIdentifier(dependencyName, dependencyVersion);
 
       // Cache version specific package metadata for future use
       versionedPackageMetaCache[packageVersionIdentifier] =
-        versionedPackageMetaCache[packageVersionIdentifier] ?? depedencyMetadata.versions[dependencyVersion];
+        versionedPackageMetaCache[packageVersionIdentifier] ?? dependencyMetadata.versions[dependencyVersion];
 
       // If the dependency has not been process add it to the queue
       if (!visited[packageVersionIdentifier]) {
