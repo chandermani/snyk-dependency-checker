@@ -1,6 +1,7 @@
 # Installing and running
 To install dependencies from the command line run `npm i`
 To run, from command line run `npm run dev`
+To test, from command line run `npm run test`
 
 To get package dependencies navigate to `http://localhost:3000/packages/<packagename>/<version>/dependencies`. Example: http://localhost:3000/packages/jws/4.0.0/dependencies
 
