@@ -2,7 +2,11 @@ import { maxSatisfying } from 'semver';
 import * as npmClient from './npm-registry-client';
 import { Package } from './package';
 
-// TODO: Add method description
+/**
+ * Builds package dependency graph for a specific package. Use breath first tree traversal algorithm
+ * @param packageName Package name to get dependency graph for
+ * @param version Package version to get dependency graph for
+ */
 export async function buildDependencyGraph(packageName: string, version: string): Promise<Package> {
   const packageIdentifier = (packageName, version) => `${packageName}-${version}`;
   const dummyRoot: Package = { name: 'dummy', version: '1', dependencies: [] };
